@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive Quiz</title>
+    <link rel="stylesheet" href="styles2.css">
+</head>
+<body>
+    <div class="quiz-container" id="quiz-box">
+        <h1>General Knowledge Game</h1>
+       
+        <p id="question-text"></p>
+        <div id="options-container"></div>
+        <p id="feedback"></p>
+
+        <div class="button-container">
+            <button id="prev-btn"> PREVIOUS QUESTION</button>
+            <button id="check-btn"> CHECK ANSWER </button>
+            <button id="next-btn"> NEXT QUESTION </button>
+        </div>
+    </div>
+
+    <div class="quiz-container hidden" id="result-box">
+        <h2>Quiz Completed!</h2>
+        <p id="score"></p>
+        <ul id="progress-list"></ul>
+        <button id="restart-btn">🔄 RESTART QUIZ !</button>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
