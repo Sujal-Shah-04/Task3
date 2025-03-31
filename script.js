@@ -23,29 +23,31 @@ class Quiz {
         return this.questions[this.currentIndex];
     }
 
-    selectAnswer(option) {
+    selectAnswer(option, button) {
         let currentQuestion = this.getCurrentQuestion();
-        if (currentQuestion.userAnswer !== null) return;
-
+        
+        // Remove previous selection highlight
+        document.querySelectorAll("#options-container button").forEach(btn => btn.classList.remove("selected"));
+        
+        // Set new selection
         currentQuestion.userAnswer = option;
-        let buttons = document.querySelectorAll("#options-container button");
-        buttons.forEach(btn => btn.disabled = true);
+        button.classList.add("selected");
     }
 
     checkAnswer() {
         let currentQuestion = this.getCurrentQuestion();
         if (currentQuestion.userAnswer === null) {
-            alert("Please select an answer first!");
+            alert("⚠️ Please select an answer first!");
             return;
         }
 
         if (currentQuestion.checkAnswer()) {
-            document.getElementById("feedback").textContent = "✔ Correct!";
+            document.getElementById("feedback").textContent = "✅ Correct!";
             document.getElementById("feedback").style.color = "green";
             this.score++;
             this.progress[this.currentIndex] = "Correct";
         } else {
-            document.getElementById("feedback").textContent = "✖ Incorrect!";
+            document.getElementById("feedback").textContent = `❌ Incorrect! The correct answer was: ${currentQuestion.correctAnswer}`;
             document.getElementById("feedback").style.color = "red";
             this.progress[this.currentIndex] = "Incorrect";
         }
@@ -77,7 +79,14 @@ class Quiz {
         currentQuestion.options.forEach(option => {
             const button = document.createElement("button");
             button.textContent = option;
-            button.addEventListener("click", () => this.selectAnswer(option));
+            button.classList.add("option-btn");
+
+            // Restore previous selection if available
+            if (currentQuestion.userAnswer === option) {
+                button.classList.add("selected");
+            }
+
+            button.addEventListener("click", () => this.selectAnswer(option, button));
             document.getElementById("options-container").appendChild(button);
         });
 
@@ -101,13 +110,13 @@ class Quiz {
     }
 }
 
+// Sample Questions
 const questions = [
     new Question("Capital of France?", ["Berlin", "Madrid", "Paris", "Rome"], "Paris"),
     new Question("Which is the largest planet?", ["Earth", "Mars", "Jupiter", "Venus"], "Jupiter"),
     new Question("Who developed the theory of relativity?", ["Newton", "Einstein", "Tesla", "Darwin"], "Einstein"),
     new Question("What is the chemical symbol for water?", ["H2O", "O2", "CO2", "HCl"], "H2O"),
     new Question("Which animal is known as the 'King of the Jungle'?", ["Tiger", "Elephant", "Lion", "Cheetah"], "Lion")
-
 ];
 
 const quiz = new Quiz(questions);

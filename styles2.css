@@ -23,7 +23,11 @@ body {
     text-align: center;
 }
 
-
+#question-text {
+    margin-bottom: 20px;
+    font-size: 24px;
+    font-weight: bold;
+}
 
 #options-container button {
     width: 100%;
@@ -31,7 +35,7 @@ body {
     margin: 8px 0;
     border: none;
     border-radius: 8px;
-    background: linear-gradient(135deg, #fff , #fff);
+    background: linear-gradient(135deg, #fff, #fff);
     color: black;
     font-size: 16px;
     cursor: pointer;
@@ -44,12 +48,21 @@ body {
     box-shadow: 0 0 10px rgba(135, 173, 226, 0.7);
 }
 
+/* Highlight selected button */
+#options-container button.selected {
+    background: linear-gradient(135deg, #4CAF50, #2E7D32);
+    color: white;
+    box-shadow: 0 0 10px rgba(40, 167, 69, 0.7);
+}
+
+/* Button container for navigation */
 .button-container {
     display: flex;
     justify-content: space-between;
     margin-top: 15px;
 }
 
+/* General button styles */
 button {
     padding: 14px 18px;
     border: none;
@@ -62,30 +75,16 @@ button {
 }
 
 /* Button Colors */
-#prev-btn {
+#prev-btn, #next-btn, #check-btn {
     background: linear-gradient(135deg, #5855ff, #5855ff);
 }
-#prev-btn:hover {
+
+#prev-btn:hover, #next-btn:hover, #check-btn:hover {
     background: linear-gradient(135deg, #5855ff, #5855ff);
     transform: scale(1.1);
 }
 
-#next-btn {
-    background: linear-gradient(135deg, #5855ff, #5855ff);
-}
-#next-btn:hover {
-    background: linear-gradient(135deg, #5855ff, #5855ff);
-    transform: scale(1.1);
-}
-
-#check-btn {
-    background: linear-gradient(135deg, #5855ff, #5855ff);
-}
-#check-btn:hover {
-    background: linear-gradient(135deg, #5855ff, #5855ff);
-    transform: scale(1.1);
-}
-
+/* Restart button style */
 #restart-btn {
     background: linear-gradient(135deg, #a133ff, #6a11cb);
     margin-top: 20px;
@@ -93,6 +92,7 @@ button {
     margin-left: auto;
     margin-right: auto;
 }
+
 #restart-btn:hover {
     background: linear-gradient(135deg, #6a11cb, #a133ff);
     transform: scale(1.1);
@@ -104,4 +104,21 @@ button {
 
 #progress-list {
     text-align: left;
+}
+
+/* Feedback styling */
+#feedback {
+    margin-top: 15px;
+    font-size: 18px;
+}
+
+/* Disabled button state */
+button:disabled {
+    background-color: gray;
+    cursor: not-allowed;
+}
+
+/* Extra styling for the quiz container's text */
+h1, h2 {
+    color: #f0f0f0;
 }
