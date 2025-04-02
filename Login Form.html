@@ -3,16 +3,22 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Neumorphic Login Form</title>
+    <title>Neumorphic Login & Signup</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <div class="container">
-        <h2>User Login !</h2>
-        <form>
-            <input type="email" class="input-field" placeholder="Email" required>
-            <input type="password" class="input-field" placeholder="Password" required>
+    <div class="container" id="login-container">
+        <h2>User Login</h2>
+        <form id="loginForm">
+            <div class="input-container">
+                <input type="email" id="email" class="input-field" placeholder="Email" required>
+            </div>
+            <div class="input-container">
+                <input type="password" id="password" class="input-field" placeholder="Password" required>
+                <span id="togglePassword">👁️</span>
+            </div>
             <button type="submit" class="btn">Login</button>
+            <p id="error-message"></p>
         </form>
         
         <div class="forgot-password">
@@ -20,13 +26,119 @@
         </div>
         
         <div class="signup-option">
-            Don't have an account? <a href="#">Sign Up</a>
+            Don't have an account? <a href="#" id="showSignup">Sign Up</a>
         </div>
 
         <div class="social-login">
-            <button class="social-btn google-btn">Login with Google</button>
-            <button class="social-btn facebook-btn">Login with Facebook</button>
+            <button class="social-btn google-btn">
+                <img src="Google.png" alt="Google Logo"> Login with Google
+            </button>
+            <button class="social-btn facebook-btn">
+                <img src="Facebook.png" alt="Facebook Logo"> Login with Facebook
+            </button>
         </div>
     </div>
+
+    <div class="container" id="signup-container" style="display: none;">
+        <h2>Create Account</h2>
+        <form id="signupForm">
+            <div class="input-container">
+                <input type="text" id="signupName" class="input-field" placeholder="Full Name" required>
+            </div>
+            <div class="input-container">
+                <input type="email" id="signupEmail" class="input-field" placeholder="Email" required>
+            </div>
+            <div class="input-container">
+                <input type="password" id="signupPassword" class="input-field" placeholder="Password" required>
+            </div>
+            <button type="submit" class="btn">Create Account</button>
+            <p id="signup-message"></p>
+        </form>
+        
+        <div class="signup-option">
+            Already have an account? <a href="#" id="showLogin">Login</a>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const togglePassword = document.getElementById("togglePassword");
+            const loginForm = document.getElementById("loginForm");
+            const signupForm = document.getElementById("signupForm");
+            const showSignup = document.getElementById("showSignup");
+            const showLogin = document.getElementById("showLogin");
+            const googleBtn = document.querySelector(".google-btn");
+            const facebookBtn = document.querySelector(".facebook-btn");
+            const signupMessage = document.getElementById("signup-message");
+    
+            if (togglePassword) {
+                togglePassword.addEventListener("click", function() {
+                    const passwordField = document.getElementById("password");
+                    passwordField.type = passwordField.type === "password" ? "text" : "password";
+                });
+            }
+    
+            if (showSignup) {
+                showSignup.addEventListener("click", function() {
+                    document.getElementById("login-container").style.display = "none";
+                    document.getElementById("signup-container").style.display = "block";
+                });
+            }
+    
+            if (showLogin) {
+                showLogin.addEventListener("click", function() {
+                    document.getElementById("signup-container").style.display = "none";
+                    document.getElementById("login-container").style.display = "block";
+                });
+            }
+    
+            if (googleBtn) {
+                googleBtn.addEventListener("click", function() {
+                    window.open("https://accounts.google.com/signin", "Google Login", "width=500,height=600");
+                });
+            }
+    
+            if (facebookBtn) {
+                facebookBtn.addEventListener("click", function() {
+                    window.open("https://www.facebook.com/login.php", "Facebook Login", "width=500,height=600");
+                });
+            }
+    
+            if (loginForm) {
+                loginForm.addEventListener("submit", function(event) {
+                    event.preventDefault();
+                    const email = document.getElementById("email").value;
+                    const password = document.getElementById("password").value;
+                    const errorMessage = document.getElementById("error-message");
+                    
+                    const validUser = { email: "user@example.com", password: "password123" };
+                    if (email === validUser.email && password === validUser.password) {
+                        window.location.href = "dashboard.html"; // Redirect to dashboard
+                    } else {
+                        errorMessage.textContent = "You don’t have an account. Please create one.";
+                    }
+                });
+            }
+    
+            if (signupForm) {
+                signupForm.addEventListener("submit", function(event) {
+                    event.preventDefault();
+                    const name = document.getElementById("signupName").value;
+                    const email = document.getElementById("signupEmail").value;
+                    const password = document.getElementById("signupPassword").value;
+                    
+                    if (name && email && password) {
+                        signupMessage.textContent = "Account created successfully! You can now log in.";
+                        setTimeout(() => {
+                            document.getElementById("signup-container").style.display = "none";
+                            document.getElementById("login-container").style.display = "block";
+                        }, 2000);
+                    } else {
+                        signupMessage.textContent = "Please fill in all details to create an account.";
+                    }
+                });
+            }
+        });
+    </script>
 </body>
 </html>

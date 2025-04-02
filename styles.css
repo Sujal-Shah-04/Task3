@@ -4,30 +4,30 @@ body {
     align-items: center;
     height: 100vh;
     background: #e0e0e0;
-    font-family: Arial, sans-serif;
-    margin: 0;
+    font-family: 'Poppins', sans-serif;
+    flex-direction: column;
+    color: white; /* Set all text to white */
+    transition: background 0.3s ease-in-out;
 }
 
 .container {
-    background: #e0e0e0;
+    background: black;
     padding: 40px;
     border-radius: 20px;
-    box-shadow: 10px 10px 20px #bebebe, -10px -10px 20px #ffffff;
     text-align: center;
     width: 350px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-h2 {
     margin-bottom: 20px;
-    color: #333;
+    transition: transform 0.3s ease-in-out;
 }
 
-form {
+h2, p, a {
+    color: white; /* Ensure all text is white */
+}
+
+.input-container {
+    position: relative;
+    margin: 15px 0;
     display: flex;
-    flex-direction: column;
     align-items: center;
     width: 100%;
 }
@@ -35,19 +35,22 @@ form {
 .input-field {
     width: 100%;
     padding: 12px;
-    margin: 10px 0;
     border: none;
     border-radius: 10px;
     background: #e0e0e0;
-    box-shadow: inset 5px 5px 10px #bebebe, inset -5px -5px 10px #ffffff;
-    font-size: 16px;
     outline: none;
-    transition: 0.3s;
-    text-align: center;
+    font-size: 16px;
+    text-align: left;
+    color: black; /* Keep input text black */
 }
 
-.input-field:focus {
-    box-shadow: inset 3px 3px 6px #bebebe, inset -3px -3px 6px #ffffff;
+#togglePassword {
+    position: absolute;
+    right: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+    color: white; /* Set password toggle icon color */
 }
 
 .btn {
@@ -55,84 +58,94 @@ form {
     padding: 12px;
     border: none;
     border-radius: 10px;
-    background: black;
-    color: white;
-    box-shadow: 5px 5px 10px #bebebe, -5px -5px 10px #ffffff;
-    font-size: 16px;
+    background: white;
+    color: black;
     cursor: pointer;
-    transition: 0.3s;
-    margin-top: 15px;
+    font-size: 16px;
+    transition: all 0.3s ease;
+    font-weight: bold;
+    box-shadow: none; /* Remove the glow */
 }
 
 .btn:hover {
-    box-shadow: inset 5px 5px 10px #bebebe, inset -5px -5px 10px #ffffff;
-    background: #333;
+    background: #f0f0f0;
 }
 
-.forgot-password {
+#error-message, #signup-message {
+    color: red;
+    font-size: 14px;
+    margin-top: 10px;
+}
+
+.forgot-password, .signup-option {
     margin-top: 10px;
     font-size: 14px;
 }
 
-.forgot-password a {
-    color: #555;
+.forgot-password a, .signup-option a {
     text-decoration: none;
-    transition: 0.3s;
+    color: white;
+    font-weight: bold;
+    transition: color 0.3s;
 }
 
-.forgot-password a:hover {
-    color: black;
-    text-decoration: underline;
-}
-
-.signup-option {
-    margin-top: 15px;
-    font-size: 14px;
-}
-
-.signup-option a {
+.forgot-password a:hover, .signup-option a:hover {
     color: #007bff;
-    text-decoration: none;
-    transition: 0.3s;
-}
-
-.signup-option a:hover {
-    color: #0056b3;
-    text-decoration: underline;
 }
 
 .social-login {
     margin-top: 20px;
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
 }
 
 .social-btn {
     width: 100%;
-    padding: 12px;
+    padding: 10px;
     margin: 5px 0;
     border: none;
     border-radius: 10px;
-    font-size: 16px;
     cursor: pointer;
-    transition: 0.3s;
+    font-size: 14px;
+    transition: all 0.3s ease;
     display: flex;
-    justify-content: center;
     align-items: center;
+    justify-content: center;
+    gap: 10px;
+    font-weight: bold;
 }
 
-.google-btn {
-    background: #db4437;
-    color: white;
+.social-btn img {
+    width: 20px;
+    height: 20px;
 }
 
-.facebook-btn {
-    background: #3b5998;
-    color: white;
+.google-btn, .facebook-btn {
+    background: white;
+    color: black;
 }
 
-.social-btn:hover {
+.google-btn:hover, .facebook-btn:hover {
     opacity: 0.8;
+}
+
+/* Signup container specific styles */
+#signup-container {
+    background: black;
+    color: white;
+}
+
+#signup-container h2,
+#signup-container p,
+#signup-container a {
+    color: white;
+}
+
+#signup-container .btn {
+    background: white;
+    color: black;
+    box-shadow: none;  /* Removes the neumorphic/glowing effect */
+    border: none;
+}
+
+#signup-container .btn:hover {
+    background: #f0f0f0; /* Slight hover effect */
 }
